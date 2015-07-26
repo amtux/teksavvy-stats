@@ -2,6 +2,7 @@
   "name": "teksavvystats",
   "private": true,
   "devDependencies": {
+    "body-parser": "^1.13.2",
     "bootswatch": "^3.3.5",
     "cors": "^2.7.1",
     "express": "^4.13.1",
