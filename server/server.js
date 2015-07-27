@@ -5,8 +5,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
 var request = require('request');
-var cors = require('cors');
-var app = express();
+var cors    = require('cors');
+var app     = express();
 
 // -- CONFIG -- \\
 
@@ -108,15 +108,16 @@ app.get('/validate/:apikey', function(req, res) {
     },
     function(err, rsp, body) {
       if (!err && rsp.statusCode === 200) {
+        console.log('valid key');
         res.json({
           'valid': 'true'
         });
       } else {
+        console.log('invalid key');
         res.json({
           'valid': 'false'
-        });
-      }
-    });
+      });
+  }});
 
 });
 
