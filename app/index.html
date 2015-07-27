@@ -40,14 +40,15 @@
 
             <ul class="nav navbar-nav">
               <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a></li>
-              <li ng-class="{ active: isActive('/daily')}"><a ng-href="#/daily">Daily stats</a></li>
-              <li ng-class="{ active: isActive('/monthly')}"><a ng-href="#/monthly">Monthly stats</a></li>
+              <li ng-class="{ active: isActive('/daily')}"><a ng-href="#/daily">Daily usage</a></li>
+              <li ng-class="{ active: isActive('/monthly')}"><a ng-href="#/monthly">Monthly usage</a></li>
             </ul>
-            <div class="navbar-form navbar-right">
-              <ul class="nav navbar-nav">
-                <li>No API key provided</li>
-              </ul>
-            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-if="showKey === true"><a href="" ng-click="revokeApiKey()"> Remove : {{apiKeyValue}} </a></li>
+              <li ng-if="showKey === false"><a href="https://myaccount.teksavvy.com/Account/Login?ReturnUrl=%2fApiKey%2fApiKeyManagement" target="_blank"> What's my API key? </a></li>
+
+              <!-- <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a></li> -->
+            </ul>
           </div>
         </div>
       </div>

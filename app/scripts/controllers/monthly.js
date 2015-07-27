@@ -14,4 +14,14 @@ angular.module('teksavvyStatsApp')
       'AngularJS',
       'Karma'
     ];
+
+    if ($cookies.get('TekSavvy-APIKey')) {
+      $scope.showKey = true;
+      $scope.apiKeyValue = $cookies.get('TekSavvy-APIKey');
+    } else {
+      $scope.showKey = false;
+    }
+
+    if value.
+
   });

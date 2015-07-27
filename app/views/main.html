@@ -7,7 +7,7 @@
 </div>
 <div class="jumbotron">
   <h1>TekSavvy Internet Usage Stats</h1><br>
-  <form>
+  <form ng-if="showKey === false">
     <span>Enter API Key (Hexadecimal, 32 characters)</span>
     <div class="input-group input-group-lg">
       <input required type="text" ng-model="api" ui-mask="HHHH HHHH HHHH HHHH HHHH HHHH HHHH HHHH" class="form-control" >
@@ -16,4 +16,19 @@
       </span>
     </div> 
   </form>
+  <br>
+  <div ng-if="showKey === true" class="show-success-choices bg-success">
+    <div class="text-center">
+      <h3>VALID API KEY PROVIDED</h3>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <a href="#/daily" class="thumbnail"> <h4 class="text-center">View daily usage stats</h4> </a>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <a href="#/monthly" class="thumbnail"> <h4 class="text-center">View monthly usage stats</h4> </a>
+      </div>
+    </div>
+  </div>
 </div>

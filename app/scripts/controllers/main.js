@@ -8,7 +8,7 @@
  * Controller of the teksavvyStatsApp
  */
 angular.module('teksavvyStatsApp')
-  .controller('MainCtrl', function($scope, $http, uiMaskConfig) {
+  .controller('MainCtrl', function($scope, $http, uiMaskConfig, $cookies, $window) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -19,16 +19,25 @@ angular.module('teksavvyStatsApp')
 
     $scope.validationError = false;
 
+    if ($cookies.get('TekSavvy-APIKey')) {
+      $scope.showKey = true;
+      $scope.apiKeyValue = $cookies.get('TekSavvy-APIKey');
+    } else {
+      $scope.showKey = false;
+    }
 
-    $scope.useKey = function(api) {
-      $scope.apiKey = angular.copy(api);
+    $scope.useKey = function(apiKey) {
+      $scope.apiKey = angular.copy(apiKey);
 
       var url = '//localhost:3000/validate/' + $scope.apiKey;
       $http.get(url)
         .success(function(data) {
           if (data.valid === 'true') {
-            console.log('valid');
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 180);
+            $cookies.put('TekSavvy-APIKey', apiKey, {expires: expireDate});
             $scope.validationError = false;
+            $window.location.reload();
           } else {
             $scope.validationError = true;
           }
@@ -37,6 +46,5 @@ angular.module('teksavvyStatsApp')
         .error(function(status) {
           console.log('Error validating key via GET on: ' + url + ', status: ' + status);
         });
-
     };
   });
