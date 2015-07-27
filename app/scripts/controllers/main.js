@@ -8,42 +8,35 @@
  * Controller of the teksavvyStatsApp
  */
 angular.module('teksavvyStatsApp')
-  .controller('MainCtrl', function($scope, $http) {
+  .controller('MainCtrl', function($scope, $http, uiMaskConfig) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.someFun = function() {
-      var apiKey = $scope.apiKey;
-      console.log(apiKey);
-      var url = "http://public-api.wordpress.com/rest/v1/sites/wtmpeachtest.wordpress.com/posts?callback=JSON_CALLBACK";
+    uiMaskConfig.maskDefinitions.H = /[0-9a-fA-F]/;
 
-$http.jsonp(url)
-    .success(function(data){
-        console.log(data.found);
-    });
-
-      // var url = "https://api.teksavvy.com/web/Usage/UsageSummaryRecords";
-      // $http({
-      //     method: 'JSONP',
-      //     url: url
-      // })
-      // .success(function(status) {
-      //   console.log(status);
-      //     //your code when success
-      // })
-      // .error(function(status) {
-      //     //your code when fails
-      // });
+    $scope.validationError = false;
 
 
-      var isKeyTestValid = /^[0-9A-Fa-f]{32}$/i.test(apiKey);
-      if (isKeyTestValid) {
-        console.log("VALID");
-      } else {
-        console.log("INVALID");
-      }
+    $scope.useKey = function(api) {
+      $scope.apiKey = angular.copy(api);
+
+      var url = '//localhost:3000/validate/' + $scope.apiKey;
+      $http.get(url)
+        .success(function(data) {
+          if (data.valid === 'true') {
+            console.log('valid');
+            $scope.validationError = false;
+          } else {
+            $scope.validationError = true;
+          }
+          console.log(data);
+        })
+        .error(function(status) {
+          console.log('Error validating key via GET on: ' + url + ', status: ' + status);
+        });
+
     };
   });

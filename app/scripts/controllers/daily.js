@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name teksavvyStatsApp.controller:AboutCtrl
+ * @name teksavvyStatsApp.controller:DailyCtrl
  * @description
- * # AboutCtrl
+ * # DailyCtrl
  * Controller of the teksavvyStatsApp
  */
 angular.module('teksavvyStatsApp')
-  .controller('AboutCtrl', function () {
+  .controller('DailyCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

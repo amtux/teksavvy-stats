@@ -1,12 +1,19 @@
+<div class="validation-error" ng-animate="{show: 'fadeIn', hide:'fadeOut'}" ng-show="validationError">
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    The API key you provided is invalid!
+</div>
+</div>
 <div class="jumbotron">
   <h1>TekSavvy Internet Usage Stats</h1><br>
   <form>
+    <span>Enter API Key (Hexadecimal, 32 characters)</span>
     <div class="input-group input-group-lg">
-      <input type="text" ng-model="apiKey" class="form-control" placeholder="Enter API key">
+      <input required type="text" ng-model="api" ui-mask="HHHH HHHH HHHH HHHH HHHH HHHH HHHH HHHH" class="form-control" >
       <span class="input-group-btn">
-        <button class="btn btn-default" ng-click="someFun()" type="button">Get Stats!</button>
+        <button class="btn btn-default" ng-click="useKey(api)" type="button">Get Stats!</button>
       </span>
     </div> 
   </form>
 </div>
-{{apiKey}}

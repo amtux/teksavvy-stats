@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'nvd3ChartDirectives',
+    'ui.mask'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -24,10 +26,15 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/daily', {
+        templateUrl: 'views/daily.html',
+        controller: 'DailyCtrl',
+        controllerAs: 'daily'
+      })
+      .when('/monthly', {
+        templateUrl: 'views/monthly.html',
+        controller: 'MonthlyCtrl',
+        controllerAs: 'monthly'
       })
       .otherwise({
         redirectTo: '/'
