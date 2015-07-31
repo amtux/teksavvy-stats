@@ -1,1 +1,45 @@
-<p>This is the monthly view.</p>
+<div class="text-center page-heading">
+  <h2>Monthly Usage statistics</h2>
+  <br>
+</div>
+
+<div ng-repeat="(key,value) in monthlyData">
+  <div class="text-center">
+    <h4> 
+      {{monthlyData[$index].StartDate | date:'mediumDate'}} 
+      to
+      {{monthlyData[$index].EndDate | date:'mediumDate'}} 
+    </h4>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-xs-12">
+      <nvd3-pie-chart
+        data="displayData[$index]"
+          width="750"
+          height="500"
+          x="xFunction()"
+          y="yFunction()"
+          showLegend="true"
+          showLabels="true"
+          showValues="true"
+          labelType="percent"
+          pieLabelsOutside="false"
+          tooltips="true">
+          <svg></svg>
+      </nvd3-pie-chart>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <table class="table table-hover">
+        <tr>
+          <th>Data</th>
+          <th>Value</th>
+        </tr>
+        <tr ng-repeat="(key, value) in monthlyData[$index]">
+          <td> {{key}} </td> <td> {{ value }} </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- <hr> -->
+</div>
+<br>
