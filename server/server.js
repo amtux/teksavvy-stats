@@ -98,7 +98,7 @@ app.get('/summary/:apikey', function(req, res) {
 app.get('/validate/:apikey', function(req, res) {
   var apiKey = req.params.apikey;
   console.log('key is ', apiKey);
-  var url = 'https://api.teksavvy.com/web/Usage/UsageRecords';
+  var url = 'https://api.teksavvy.com/web/Usage/UsageSummaryRecords';
   request({
       headers: {
         'TekSavvy-APIKey': apiKey
