@@ -2,21 +2,22 @@
   <h2>Monthly Usage statistics</h2>
   <br>
 </div>
-
-<div ng-repeat="(key,value) in monthlyData">
-  <div class="text-center">
-    <h4> 
-      {{monthlyData[$index].StartDate | date:'mediumDate'}} 
-      to
-      {{monthlyData[$index].EndDate | date:'mediumDate'}} 
-    </h4>
-  </div>
-  <div class="row">
-    <div class="col-md-8 col-xs-12">
-      <nvd3-pie-chart
-        data="displayData[$index]"
+<div ng-show="showKey === true">
+  <div ng-repeat="(key,value) in monthlyData">
+    <div class="text-center">
+      <h4> 
+        {{monthlyData[$index].StartDate | date:'mediumDate'}} 
+        to
+        {{monthlyData[$index].EndDate | date:'mediumDate'}} 
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-xs-12">
+        <nvd3-pie-chart
+          data="displayData[$index]"
+          id="monthlyPie{{$index}}"
           width="750"
-          height="500"
+          height="400"
           x="xFunction()"
           y="yFunction()"
           showLegend="true"
@@ -24,22 +25,52 @@
           showValues="true"
           labelType="percent"
           pieLabelsOutside="false"
+          noData="No data for this month!"
           tooltips="true">
           <svg></svg>
-      </nvd3-pie-chart>
-    </div>
-    <div class="col-md-4 col-xs-12">
-      <table class="table table-hover">
-        <tr>
-          <th>Data</th>
-          <th>Value</th>
-        </tr>
-        <tr ng-repeat="(key, value) in monthlyData[$index]">
-          <td> {{key}} </td> <td> {{ value }} </td>
-        </tr>
-      </table>
+        </nvd3-pie-chart>
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <p class="text-center">Raw data</p>
+        <table class="table table-hover">
+          <tr>
+            <th>Data</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>Start date</td>
+            <td> {{monthlyData[$index].StartDate | date:'mediumDate'}} </td>
+          </tr>
+          <tr>
+            <td>End date</td>
+            <td> {{monthlyData[$index].EndDate | date:'mediumDate'}} </td>
+          </tr>
+          <tr>
+          <tr>
+            <td>Total On-peak usage(GB)</td>
+            <td> {{monthlyData[$index].OnPeakDownload + 
+                  monthlyData[$index].OnPeakUpload | number:2}} GB</td>
+          </tr>
+          <tr>
+            <td>Total Off-peak usage(GB)</td>
+            <td> {{monthlyData[$index].OffPeakDownload +
+                  monthlyData[$index].OffPeakUpload | number:2}} GB</td>
+          </tr>
+          <tr>
+            <td>Total usage</td>
+            <td>{{monthlyData[$index].OnPeakDownload +
+                  monthlyData[$index].OnPeakUpload + 
+                  monthlyData[$index].OffPeakDownload +
+                  monthlyData[$index].OffPeakUpload | number:2}} GB</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
-  <!-- <hr> -->
+  <p><strong>Remember: </strong> Between the hours of 2:00 am and 8:00 am downloads are always free. Downloads performed outside of these hours count toward your usage. Remember uploads are always free, and don't count toward your usage!</p>
+</div>
+<div ng-show="showKey === false">
+  <p>No data to display.</p>
+  <p>Have you entered valid API key? If not, enter <a href="#/">here</a> </p>
 </div>
 <br>

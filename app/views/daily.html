@@ -1,4 +1,50 @@
-<div class="jumbotron">
-	<h2>This is the daily view.</h2>
-
+<div class="text-center page-heading">
+  <h2>Daily	 Usage statistics</h2>
+  <br>
 </div>
+<div ng-show="showKey === true">
+  <h4 class="text-center">Long-term usage</h4>
+	<nvd3-line-with-focus-chart
+    data="longTermData"
+    id="focusGraph"
+    height="500"
+    height2="100"
+    margin="{left:80,top:50,bottom:30,right:50}"
+    xAxisTickFormat="xAxisLongTerm()"
+    x2AxisTickFormat="xAxisLongTerm()"
+    interpolate="linear"
+    showLegend="true"
+    tooltips="true"
+    interactive="true">
+    <svg></svg>
+  </nvd3-line-with-focus-chart>
+  <p class="text-center">Click and drag over an area in bottom graph to focus on a range.</p>
+  <br>
+  <div ng-show="curOnDownload.length">
+    <h4 class="text-center">Usage this month  </h4>
+    <nvd3-multi-bar-chart
+      data="thisMonthData"
+      id="showControlsExample"
+      width="1024"
+      height="500"
+      showXAxis="true"
+      stacked="true"
+      showLegend="true"
+      showYAxis="true"
+      xAxisTickFormat="xAxisThisMonth()"
+      showControls="true"
+      interactive="true"
+      noData="There is nothing to show right now!"
+      tooltips="true">
+      <svg></svg>
+    </nvd3-multi-bar-chart>
+    <br>
+  </div>
+  <p><strong>Remember: </strong> Between the hours of 2:00 am and 8:00 am downloads are always free. Downloads performed outside of these hours count toward your usage. Remember uploads are always free, and don't count toward your usage!</p>
+</div>
+
+<div ng-show="showKey === false">
+  <p>No data to display.</p>
+  <p>Have you entered valid API key? If not, enter <a href="#/">here</a> </p>
+</div>
+<br>

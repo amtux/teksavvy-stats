@@ -5,6 +5,7 @@ version 0.12.1.
 
 ## Build & development
 
+Run `node server/server.js` to start API server
 Run `grunt` for building and `grunt serve` for preview.
 
 ## Testing

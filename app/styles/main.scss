@@ -20,6 +20,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
+  margin-bottom: 60px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -29,6 +30,7 @@ body {
   padding-left: 15px;
   padding-right: 15px;
 }
+
 
 /* Custom page header */
 .header {
