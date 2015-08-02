@@ -8,7 +8,7 @@
  * Controller of the teksavvyStatsApp
  */
 angular.module('teksavvyStatsApp')
-  .controller('DailyCtrl', function($scope, $http, $cookies) {
+  .controller('DailyCtrl', function($scope, $http, $cookies, apiConfig) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -47,7 +47,7 @@ angular.module('teksavvyStatsApp')
       $scope.showKey = true;
       $scope.apiKeyValue = $cookies.get('TekSavvy-APIKey');
 
-      var url = '//localhost:3000/records/' + $scope.apiKeyValue;
+      var url = apiConfig.url + ':' + apiConfig.port + '/records/' + $scope.apiKeyValue;
       $http.get(url)
         .success(function(data) {
           $scope.dailyData = data.value;
@@ -79,29 +79,29 @@ angular.module('teksavvyStatsApp')
 
           $scope.thisMonthData = [{
             "key": "On-peak Upload (GB)",
+            "disabled": true,
             "values": $scope.curOnUpload
           }, {
             "key": "On-peak Download (GB)",
             "values": $scope.curOnDownload
           }, {
             "key": "Off-peak Upload (GB)",
+            "disabled": true,
             "values": $scope.curOffUpload
           }, {
             "key": "Off-peak Download (GB)",
+            "disabled": true,
             "values": $scope.curOffDownload
           }];
 
           $scope.longTermData = [{
             "key": "On-peak usage (GB)",
-            "bar": true,
             "values": $scope.onPeakUsage
           }, {
             "key": "Off-peak usage (GB)",
-            "bar": true,
             "values": $scope.offPeakUsage
           }, {
             "key": "Total usage (GB)",
-            "area": true,
             "values": $scope.total
           }];
         })

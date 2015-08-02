@@ -8,7 +8,7 @@
  * Controller of the teksavvyStatsApp
  */
 angular.module('teksavvyStatsApp')
-  .controller('MonthlyCtrl', function($scope, $http, $cookies) {
+  .controller('MonthlyCtrl', function($scope, $http, $cookies, apiConfig) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -32,7 +32,7 @@ angular.module('teksavvyStatsApp')
       $scope.showKey = true;
       $scope.apiKeyValue = $cookies.get('TekSavvy-APIKey');
 
-      var url = '//localhost:3000/summary/' + $scope.apiKeyValue;
+      var url = apiConfig.url + ':' + apiConfig.port + '/summary/' + $scope.apiKeyValue;
       $http.get(url)
         .success(function(data) {
           $scope.monthlyData = data.value;

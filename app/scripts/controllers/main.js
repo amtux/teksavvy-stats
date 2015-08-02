@@ -8,7 +8,7 @@
  * Controller of the teksavvyStatsApp
  */
 angular.module('teksavvyStatsApp')
-  .controller('MainCtrl', function($scope, $http, uiMaskConfig, $cookies, $window) {
+  .controller('MainCtrl', function($scope, $http, uiMaskConfig, $cookies, $window, $apiConfig) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -29,7 +29,7 @@ angular.module('teksavvyStatsApp')
     $scope.useKey = function(apiKey) {
       $scope.apiKey = angular.copy(apiKey);
 
-      var url = '//localhost:3000/validate/' + $scope.apiKey;
+      var url = apiConfig.url + ':' + apiConfig.port + '/validate/' + $scope.apiKeyValue;
       $http.get(url)
         .success(function(data) {
           if (data.valid === 'true') {

@@ -19,6 +19,10 @@ angular
     'nvd3ChartDirectives',
     'ui.mask'
   ])
+  .constant("apiConfig", {
+        "url": "//localhost",
+        "port": "3000"
+    })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
