@@ -22,6 +22,7 @@ angular.module('teksavvyStatsApp')
     $scope.onPeakUsage = [];
     $scope.offPeakUsage = [];
 
+    $scope.curMeteredUsage = 0;
     $scope.curOffUpload = [];
     $scope.curOffDownload = [];
     $scope.curOnUpload = [];
@@ -66,6 +67,7 @@ angular.module('teksavvyStatsApp')
             var tot = on + off;
 
             if (tempDate >= startOfMonth) {
+              $scope.curMeteredUsage += elem.OnPeakDownload;
               $scope.curOffUpload.push([tempDate, cleanDec(elem.OffPeakUpload)]);
               $scope.curOffDownload.push([tempDate, cleanDec(elem.OffPeakDownload)]);
               $scope.curOnUpload.push([tempDate, cleanDec(elem.OnPeakUpload)]);
