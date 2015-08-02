@@ -29,7 +29,7 @@ angular.module('teksavvyStatsApp')
     $scope.useKey = function(apiKey) {
       $scope.apiKey = angular.copy(apiKey);
 
-      var url = apiConfig.url + ':' + apiConfig.port + '/validate/' + $scope.apiKeyValue;
+      var url = apiConfig.url + ':' + apiConfig.port + '/validate/' + $scope.apiKey;
       $http.get(url)
         .success(function(data) {
           if (data.valid === 'true') {
