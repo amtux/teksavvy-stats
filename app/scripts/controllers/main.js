@@ -8,7 +8,7 @@
  * Controller of the teksavvyStatsApp
  */
 angular.module('teksavvyStatsApp')
-  .controller('MainCtrl', function($scope, $http, uiMaskConfig, $cookies, $window, $apiConfig) {
+  .controller('MainCtrl', function($scope, $http, uiMaskConfig, $cookies, $window, apiConfig) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
